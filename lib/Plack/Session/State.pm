@@ -2,7 +2,7 @@ package Plack::Session::State;
 use strict;
 use warnings;
 
-our $VERSION   = '0.12';
+our $VERSION   = '0.13';
 our $AUTHORITY = 'cpan:STEVAN';
 
 use Digest::SHA1 ();
@@ -97,6 +97,15 @@ subclassing is not a requirement) and defines the spec for
 all B<Plack::Session::State::*> modules. You will only
 need to override a couple methods if you do subclass. See
 L<Plack::Session::State::Cookie> for an example of this.
+
+B<WARNING>: parameter based session ID management makes session
+fixation really easy, and that makes your website vulnerable. You
+should really avoid using this state in the production environment
+except when you have to deal with legacy HTTP clients that do not
+support cookies.
+
+In the future this parameter based state handling will be removed from
+this base class and will be moved to its own State class.
 
 =head1 METHODS
 
